@@ -103,7 +103,7 @@ export default function About() {
                   fontSize="2xl"
                   fontWeight="bold"
                 >
-                  CN
+                  CNO
                 </Box>
               )}
             </Box>
