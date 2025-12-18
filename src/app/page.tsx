@@ -138,7 +138,7 @@ export default function Home() {
               >
                 {!imageError ? (
                   <Image
-                    src="/profile.jpg"
+                    src="/cynthia-dp.jpeg"
                     alt="Cynthia Nwankwo"
                     w="100%"
                     h="100%"
@@ -179,26 +179,17 @@ export default function Home() {
               <Heading size={{ base: "xl", md: "2xl" }} mb={4} color="var(--color-dark)">
                 DevOps & Cloud Engineer
               </Heading>
-              <Heading size={{ base: "lg", md: "xl" }} mb={6} color="var(--color-primary)" fontWeight="normal">
+              {/* <Heading size={{ base: "lg", md: "xl" }} mb={6} color="var(--color-primary)" fontWeight="normal">
                 Software Developer
-              </Heading>
+              </Heading> */}
             </Box>
 
-            <Text fontSize={{ base: "lg", md: "xl" }} lineHeight="tall" color="var(--color-dark)" mb={8}>
+            <Text fontSize={{ base: "lg", md: "xl" }} lineHeight="tall" color="var(--color-dark)" mb={8} textAlign="justify">
               Building scalable cloud infrastructure and crafting exceptional digital experiences.
               Passionate about automation, reliability, and creating products that make a difference.
             </Text>
 
             <VStack spacing={6} align="start" w="100%">
-              <Box>
-                <Text fontSize="sm" color="var(--color-primary)" textTransform="uppercase" letterSpacing="wide" mb={2}>
-                  Location
-                </Text>
-                <Text fontSize="lg" color="var(--color-dark)">
-                  Lagos, Nigeria
-                </Text>
-              </Box>
-
               <Box>
                 <Text fontSize="sm" color="var(--color-primary)" textTransform="uppercase" letterSpacing="wide" mb={2}>
                   Email

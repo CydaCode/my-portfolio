@@ -69,7 +69,7 @@ export default function About() {
             >
               {!imageError ? (
                 <Image
-                  src="/profile.jpg"
+                  src="/cynthia-dp.jpeg"
                   alt="Cynthia Nwankwo"
                   w="100%"
                   h="100%"
