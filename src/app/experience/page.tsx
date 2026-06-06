@@ -84,7 +84,7 @@ const softwareExperiences: Experience[] = [
     company: "myimoapp",
     location: "Remote",
     type: "Contract",
-    period: "Feb 2024 – Dec 2024",
+    period: "Feb 2025 – Dec 2025",
     link: "https://myimoapp.com",
     linkText: "Visit Platform",
     achievements: [
