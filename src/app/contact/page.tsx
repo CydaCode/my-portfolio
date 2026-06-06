@@ -17,7 +17,7 @@ export default function Contact() {
         const target = event.target as HTMLElement;
         const sidebar = document.querySelector('[class*="sidebar"]');
         const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-        
+
         if (sidebar && menuButton) {
           if (!sidebar.contains(target) && !menuButton.contains(target)) {
             setIsMenuOpen(false);
@@ -27,24 +27,23 @@ export default function Contact() {
     };
 
     if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = '';
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
   return (
-    <Box className={`${styles.homeContainer} ${isMenuOpen ? styles.menuOpen : ''}`}>
+    <Box className={`${styles.homeContainer} ${isMenuOpen ? styles.menuOpen : ""}`}>
       <MobileMenu isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
-      
-      {/* Sidebar Navigation */}
-      <Box className={`${styles.sidebar} ${isMenuOpen ? styles.open : ''}`}>
+
+      <Box className={`${styles.sidebar} ${isMenuOpen ? styles.open : ""}`}>
         <VStack spacing={8} align="start" h="100%" p={8}>
           <VStack spacing={4} align="start" w="100%">
             <Link href="/" style={{ textDecoration: "none" }}>
@@ -55,7 +54,6 @@ export default function Contact() {
                 Nwankwo
               </Heading>
             </Link>
-            {/* Profile Picture in Sidebar */}
             <Box
               w={{ base: "100px", md: "120px" }}
               h={{ base: "100px", md: "120px" }}
@@ -117,9 +115,9 @@ export default function Contact() {
               { name: "Projects", path: "/projects" },
               { name: "Contact", path: "/contact", active: true },
             ].map((item) => (
-              <Link 
-                key={item.path} 
-                href={item.path} 
+              <Link
+                key={item.path}
+                href={item.path}
                 style={{ textDecoration: "none" }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -147,63 +145,71 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Heading className={styles.sectionTitle}>Get In Touch</Heading>
+              <Heading className={styles.sectionTitle}>Contact</Heading>
               <Text className={styles.sectionSubtitle}>
-                I&apos;m always open to discussing new opportunities, interesting projects, 
-                or just having a conversation about technology and innovation.
+                Open to DevOps roles, cloud engineering projects, Software Engineering roles and collaborations.
+                The fastest way to reach me is email.
               </Text>
 
-              <VStack spacing={8} align="start">
-                <Box>
-                  <Text fontSize="sm" color="var(--color-primary)" textTransform="uppercase" letterSpacing="wide" mb={2}>
-                    Email
-                  </Text>
-                  <ChakraLink href="mailto:nwacynti25@gmail.com">
-                    <Text fontSize="xl" color="var(--color-primary)" _hover={{ textDecoration: "underline" }}>
+              <Box className={styles.contactGrid}>
+                <Box className={styles.contactCard}>
+                  <Text className={styles.contactCardLabel}>Email</Text>
+                  <Text className={styles.contactCardValue}>
+                    <ChakraLink href="mailto:nwacynti25@gmail.com">
                       nwacynti25@gmail.com
-                    </Text>
-                  </ChakraLink>
-                </Box>
-
-                <Box>
-                  <Text fontSize="sm" color="var(--color-primary)" textTransform="uppercase" letterSpacing="wide" mb={2}>
-                    Location
-                  </Text>
-                  <Text fontSize="xl" color="var(--color-dark)">
-                    Lagos, Nigeria
+                    </ChakraLink>
                   </Text>
                 </Box>
 
-                <Box>
-                  <Text fontSize="sm" color="var(--color-primary)" textTransform="uppercase" letterSpacing="wide" mb={4}>
-                    Social Links
-                  </Text>
-                  <VStack spacing={3} align="start">
-                    <ChakraLink href="https://www.linkedin.com/in/cynthia-nwankwo-1c" isExternal>
-                      <Text fontSize="lg" color="var(--color-primary)" _hover={{ textDecoration: "underline" }}>
-                        LinkedIn →
-                      </Text>
-                    </ChakraLink>
-                    <ChakraLink href="https://github.com/CydaCode" isExternal>
-                      <Text fontSize="lg" color="var(--color-primary)" _hover={{ textDecoration: "underline" }}>
-                        GitHub →
-                      </Text>
-                    </ChakraLink>
-                    <ChakraLink href="https://twitter.com/tia_code" isExternal>
-                      <Text fontSize="lg" color="var(--color-primary)" _hover={{ textDecoration: "underline" }}>
-                        Twitter →
-                      </Text>
-                    </ChakraLink>
-                  </VStack>
+                <Box className={styles.contactCard}>
+                <Text className={styles.contactCardLabel}>Work Preference</Text>
+                <Text className={styles.contactCardValue}>Remote • Open to Global Opportunities</Text>
                 </Box>
 
-                <Box mt={8}>
-                  <Text className={styles.textLarge} color="var(--color-dark)" opacity={0.8}>
-                    Feel free to reach out if you&apos;d like to collaborate on a project, 
-                    discuss opportunities, or simply connect!
-                  </Text>
+                <Box className={`${styles.contactCard} ${styles.contactCardFull}`}>
+                  <Text className={styles.contactCardLabel}>Connect</Text>
+                  <Box className={styles.socialLinks}>
+                    <ChakraLink
+                      href="https://www.linkedin.com/in/cynthia-nwankwo-1c"
+                      isExternal
+                      className={styles.socialLink}
+                    >
+                      LinkedIn
+                    </ChakraLink>
+                    <ChakraLink
+                      href="https://github.com/CydaCode"
+                      isExternal
+                      className={styles.socialLink}
+                    >
+                      GitHub
+                    </ChakraLink>
+                    <ChakraLink
+                      href="https://twitter.com/tia_code"
+                      isExternal
+                      className={styles.socialLink}
+                    >
+                      Twitter
+                    </ChakraLink>
+                    <ChakraLink
+                      href="https://tiacode.hashnode.dev"
+                      isExternal
+                      className={styles.socialLink}
+                    >
+                      Blog
+                    </ChakraLink>
+                  </Box>
                 </Box>
-              </VStack>
+              </Box>
+
+              <Box className={styles.contactCTA}>
+                <Text className={styles.contactCTAText}>
+                  Whether it&apos;s a full-time opportunity, a contract project, or a technical
+                  conversation, I&apos;d love to hear from you.
+                </Text>
+                <ChakraLink href="mailto:nwacynti25@gmail.com" className={styles.contactCTAButton}>
+                  Send an Email
+                </ChakraLink>
+              </Box>
             </motion.div>
           </Box>
         </Box>
@@ -211,4 +217,3 @@ export default function Contact() {
     </Box>
   );
 }
-

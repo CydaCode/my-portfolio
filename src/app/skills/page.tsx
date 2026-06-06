@@ -1,11 +1,92 @@
 "use client";
 
-import { Box, VStack,  Text, Heading, Image } from "@chakra-ui/react";
+import { Box, VStack, Text, Heading, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import styles from "../page.module.css";
 import MobileMenu from "../components/MobileMenu";
+
+const skillCategories = [
+  {
+    title: "Cloud & Infrastructure",
+    icon: "☁",
+    skills: [
+      "AWS (EC2, S3, IAM, CloudWatch, VPC, RDS, EKS, ECR)",
+      "Terraform",
+      "Ansible",
+      "Linux",
+      "Nginx",
+      "Shell Scripting",
+      "IAM Roles & Policies",
+      "OIDC Configuration",
+    ],
+  },
+  {
+    title: "DevOps & CI/CD",
+    icon: "⚙",
+    skills: [
+      "Docker",
+      "Kubernetes (EKS)",
+      "GitHub Actions",
+      "Jenkins",
+      "CI/CD Pipelines",
+      "Git",
+      "External Secrets Operator (ESO)",
+      "Helm Charts",
+      "IRSA (IAM Roles for Service Accounts)",
+      "Horizontal Pod Autoscaler (HPA)",
+    ],
+  },
+  {
+    title: "Backend Development",
+    icon: "🖥️",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "REST API Design",
+      "JWT Authentication",
+      "Prisma ORM",
+      "PostgreSQL",
+    ],
+  },
+  {
+    title: "Frontend Development",
+    icon: "🎨",
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Chakra UI",
+      "Responsive Design",
+    ],
+  },
+  {
+    title: "AI & Machine Learning",
+    icon: "🤖",
+    skills: [
+      "YOLOv8",
+      "Ultralytics",
+      "PyTorch",
+      "Computer Vision",
+      "Model Inference",
+    ],
+  },
+  {
+    title: "Build & Package Tools",
+    icon: "📦",
+    skills: [
+      "Maven",
+      "Gradle",
+      "npm",
+      "Yarn",
+    ],
+  },
+];
 
 export default function Skills() {
   const [imageError, setImageError] = useState(false);
@@ -17,7 +98,7 @@ export default function Skills() {
         const target = event.target as HTMLElement;
         const sidebar = document.querySelector('[class*="sidebar"]');
         const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-        
+
         if (sidebar && menuButton) {
           if (!sidebar.contains(target) && !menuButton.contains(target)) {
             setIsMenuOpen(false);
@@ -27,87 +108,23 @@ export default function Skills() {
     };
 
     if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = '';
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
-  const skillCategories = [
-    {
-      title: "DevOps & Cloud",
-      skills: [
-        "AWS (EC2, S3, IAM, CloudWatch, VPC, RDS, Lambda, CloudFormation)",
-        "Linux Administration",
-        "Nginx",
-        "Terraform (Infrastructure as Code)",
-        "Docker (Containerization)",
-        "GitHub Actions (CI/CD)",
-        "Jenkins",
-        "Kubernetes",
-        "Monitoring & Logging",
-        "Cloud Security",
-        "Serverless Architecture",
-        "Infrastructure Automation",
-        "Configuration Management",
-        "Cloud Migration",
-        "Disaster Recovery",
-        "Load Balancing",
-        "Auto Scaling",
-        "Cloud Cost Optimization",
-      ],
-    },
-    {
-      title: "Software Development",
-      skills: [
-        "JavaScript",
-        "TypeScript",
-        "Next.js",
-        "React",
-        "Node.js",
-        "HTML/CSS",
-        "Tailwind CSS",
-        "Chakra UI",
-        "RESTful APIs",
-        "State Management",
-        "Responsive Design",
-        "Performance Optimization",
-      ],
-    },
-    {
-      title: "Tools & Technologies",
-      skills: [
-        "Git & GitHub",
-        "Jira",
-        "Trello",
-        "ClickUp",
-        "Scrum",
-        "Agile Methodologies",
-        "Notion",
-        "CI/CD Pipelines",
-        "Monitoring Tools",
-        "Log Management",
-        "Version Control",
-        "Code Review",
-        "Testing",
-        "Debugging",
-        "Documentation",
-      ],
-    },
-  ];
-
   return (
-    <Box className={`${styles.homeContainer} ${isMenuOpen ? styles.menuOpen : ''}`}>
+    <Box className={`${styles.homeContainer} ${isMenuOpen ? styles.menuOpen : ""}`}>
       <MobileMenu isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
-      
-      {/* Sidebar Navigation */}
-      <Box className={`${styles.sidebar} ${isMenuOpen ? styles.open : ''}`}>
+
+      <Box className={`${styles.sidebar} ${isMenuOpen ? styles.open : ""}`}>
         <VStack spacing={8} align="start" h="100%" p={8}>
           <VStack spacing={4} align="start" w="100%">
             <Link href="/" style={{ textDecoration: "none" }}>
@@ -118,7 +135,6 @@ export default function Skills() {
                 Nwankwo
               </Heading>
             </Link>
-            {/* Profile Picture in Sidebar */}
             <Box
               w={{ base: "100px", md: "120px" }}
               h={{ base: "100px", md: "120px" }}
@@ -180,9 +196,9 @@ export default function Skills() {
               { name: "Projects", path: "/projects" },
               { name: "Contact", path: "/contact" },
             ].map((item) => (
-              <Link 
-                key={item.path} 
-                href={item.path} 
+              <Link
+                key={item.path}
+                href={item.path}
                 style={{ textDecoration: "none" }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -212,29 +228,33 @@ export default function Skills() {
             >
               <Heading className={styles.sectionTitle}>Technical Skills</Heading>
               <Text className={styles.sectionSubtitle}>
-                A comprehensive overview of my technical expertise across DevOps, cloud infrastructure, 
-                and software development.
+                Tools and technologies I use to build, deploy, and maintain production systems.
               </Text>
 
-              <Box className={styles.skillsGrid}>
+              <Box className={styles.skillsLayout}>
                 {skillCategories.map((category, index) => (
                   <motion.div
                     key={category.title}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className={styles.skillCategory}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Heading size="md" mb={4} color="var(--color-primary)">
-                      {category.title}
-                    </Heading>
-                    <VStack spacing={2} align="start">
-                      {category.skills.map((skill, i) => (
-                        <Text key={i} fontSize="sm" color="var(--color-dark)">
-                          • {skill}
+                    <Box className={styles.skillGroup}>
+                      <Box className={styles.skillGroupHeader}>
+                        <Box className={styles.skillGroupIcon}>{category.icon}</Box>
+                        <Text className={styles.skillGroupTitle}>{category.title}</Text>
+                        <Text className={styles.skillGroupCount}>
+                          {category.skills.length} skills
                         </Text>
-                      ))}
-                    </VStack>
+                      </Box>
+                      <Box className={styles.skillTags}>
+                        {category.skills.map((skill) => (
+                          <span key={skill} className={styles.skillTag}>
+                            {skill}
+                          </span>
+                        ))}
+                      </Box>
+                    </Box>
                   </motion.div>
                 ))}
               </Box>
@@ -245,4 +265,3 @@ export default function Skills() {
     </Box>
   );
 }
-

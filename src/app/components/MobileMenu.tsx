@@ -26,9 +26,9 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
       p={3}
       borderRadius="8px"
       boxShadow="0 2px 8px rgba(0, 0, 0, 0.2)"
-      fontSize="xl"
-      minW="48px"
-      h="48px"
+      fontSize=""
+      minW="38px"
+      h="38px"
     >
       {isOpen ? "✕" : "☰"}
     </Button>

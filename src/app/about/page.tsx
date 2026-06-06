@@ -1,11 +1,25 @@
 "use client";
 
-import { Box, VStack,  Text, Heading, Image } from "@chakra-ui/react";
+import { Box, VStack, Text, Heading, Image } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "../page.module.css";
 import MobileMenu from "../components/MobileMenu";
+
+const certifications = [
+  "AWS Solutions Architect – Associate",
+  "AWS Cloud Practitioner",
+  "AWS AI Practitioner",
+  "DevOps Engineering Certification",
+  "Introduction to Kubernetes (LFS158)",
+  "Introduction to Linux",
+];
+
+const education = [
+  { degree: "Diploma – Software Development", school: "TIIDELab" },
+  { degree: "Bachelor of Technology – Chemistry", school: "Federal University of Technology, Minna" },
+];
 
 export default function About() {
   const [imageError, setImageError] = useState(false);
@@ -17,7 +31,7 @@ export default function About() {
         const target = event.target as HTMLElement;
         const sidebar = document.querySelector('[class*="sidebar"]');
         const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-        
+
         if (sidebar && menuButton) {
           if (!sidebar.contains(target) && !menuButton.contains(target)) {
             setIsMenuOpen(false);
@@ -27,24 +41,23 @@ export default function About() {
     };
 
     if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = '';
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
   return (
-    <Box className={`${styles.homeContainer} ${isMenuOpen ? styles.menuOpen : ''}`}>
+    <Box className={`${styles.homeContainer} ${isMenuOpen ? styles.menuOpen : ""}`}>
       <MobileMenu isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
-      
-      {/* Sidebar Navigation */}
-      <Box className={`${styles.sidebar} ${isMenuOpen ? styles.open : ''}`}>
+
+      <Box className={`${styles.sidebar} ${isMenuOpen ? styles.open : ""}`}>
         <VStack spacing={8} align="start" h="100%" p={8}>
           <VStack spacing={4} align="start" w="100%">
             <Link href="/" style={{ textDecoration: "none" }}>
@@ -55,7 +68,6 @@ export default function About() {
                 Nwankwo
               </Heading>
             </Link>
-            {/* Profile Picture in Sidebar */}
             <Box
               w={{ base: "100px", md: "120px" }}
               h={{ base: "100px", md: "120px" }}
@@ -103,7 +115,7 @@ export default function About() {
                   fontSize="2xl"
                   fontWeight="bold"
                 >
-                  CNO
+                  CN
                 </Box>
               )}
             </Box>
@@ -117,9 +129,9 @@ export default function About() {
               { name: "Projects", path: "/projects" },
               { name: "Contact", path: "/contact" },
             ].map((item) => (
-              <Link 
-                key={item.path} 
-                href={item.path} 
+              <Link
+                key={item.path}
+                href={item.path}
                 style={{ textDecoration: "none" }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -149,73 +161,58 @@ export default function About() {
             >
               <Heading className={styles.sectionTitle}>About Me</Heading>
               <Text className={styles.sectionSubtitle}>
-                I am an experienced DevOps & Cloud Engineer and Software Developer with hands-on experience 
-                in cloud infrastructure, CI/CD automation, containerization, and application deployment.
+                DevOps and Cloud Engineer who also writes code. I design infrastructure,
+                automate deployments, and build the products that run on top of it.
               </Text>
 
-              <VStack spacing={8} align="start">
+              <Box className={styles.aboutSection}>
+                <Text className={styles.sectionHeading}>Professional Summary</Text>
+                <VStack spacing={4} align="start">
+                  <Text className={styles.aboutText}>
+                    I design, automate, and deploy cloud infrastructure on AWS, from
+                    Terraform-provisioned EC2 and VPC environments to Dockerized applications
+                    shipped through GitHub Actions and Jenkins pipelines. My work focuses on
+                    making deployments repeatable, environments consistent, and systems reliable
+                    at scale.
+                  </Text>
+                  <Text className={styles.aboutText}>
+                    Alongside infrastructure work, I bring a software engineering background in
+                    React, Next.js, and TypeScript. That dual perspective lets me bridge the
+                    gap between what developers build and how it runs in production, whether
+                    that means containerizing a Django backend or redesigning a platform that
+                    drives measurable business growth.
+                  </Text>
+                  <Text className={styles.aboutText}>
+                    Currently at Ecoloop, I operate end-to-end CI/CD pipelines, manage AWS
+                    infrastructure with Terraform and Ansible, and support production reliability
+                    through monitoring and deployment optimization.
+                  </Text>
+                </VStack>
+              </Box>
+
+              <Box className={styles.aboutSection}>
+                <Text className={styles.sectionHeading}>Certifications</Text>
+                <Box className={styles.certGrid}>
+                  {certifications.map((cert) => (
+                    <Box key={cert} className={styles.certItem}>
+                      <Box className={styles.certDot} />
+                      <Text className={styles.certName}>{cert}</Text>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+
+              <Box>
+                <Text className={styles.sectionHeading}>Education</Text>
                 <Box>
-                  <Heading size="lg" mb={4} color="var(--color-primary)">
-                    Professional Summary
-                  </Heading>
-                  <VStack spacing={4} align="start">
-                    <Text className={styles.textLarge}>
-                      Skilled in AWS, Docker, Jenkins, Kubernetes, GitHub Actions, and modern JavaScript development. 
-                      Passionate about building scalable systems, improving developer workflows, 
-                      and enhancing product reliability.
-                    </Text>
-                    <Text className={styles.textLarge}>
-                      With a strong foundation in software development and a deep understanding of 
-                      cloud architecture, I bridge the gap between development and operations. 
-                      I&apos;ve contributed to projects that have significantly improved user engagement 
-                      and system reliability.
-                    </Text>
-                    <Text className={styles.textLarge}>
-                      Currently working where I build and automate CI/CD pipelines, deploy AWS cloud 
-                      infrastructure, and contribute to software development.
-                    </Text>
-                  </VStack>
+                  {education.map((item) => (
+                    <Box key={item.degree} className={styles.educationItem}>
+                      <Text className={styles.educationDegree}>{item.degree}</Text>
+                      <Text className={styles.educationSchool}>{item.school}</Text>
+                    </Box>
+                  ))}
                 </Box>
-
-                <Box w="100%">
-                  <Heading size="lg" mb={4} color="var(--color-primary)">
-                    Education & Certifications
-                  </Heading>
-                  <VStack spacing={6} align="start">
-                    <Box>
-                      <Text fontWeight="bold" fontSize="lg" mb={2}>
-                        AWS Cloud Practitioner & Solutions Architect
-                      </Text>
-                      <Text className={styles.textMuted} mb={2}>ALX | Jun 2023 - Feb 2024</Text>
-                      <Text className={styles.textLarge}>
-                        Proficient in designing resilient, high-availability, and fault-tolerant architectures 
-                        using AWS services. Advanced knowledge in implementing robust security measures, 
-                        adhering to compliance requirements, and utilizing AWS security tools. Comprehensive 
-                        understanding of key AWS services including EC2, S3, VPC, RDS, Lambda, CloudFormation, and IAM.
-                      </Text>
-                    </Box>
-
-                    <Box>
-                      <Text fontWeight="bold" fontSize="lg" mb={2}>
-                        Diploma in Software Development
-                      </Text>
-                      <Text className={styles.textMuted} mb={2}>TIIDELab | Mar 2021 - Dec 2021</Text>
-                      <Text className={styles.textLarge}>
-                        Developed technical solutions to support Nigerian youths in transforming business 
-                        ideas into innovative technology-driven solutions. Provided mentorship and training 
-                        to aspiring innovators and solution providers.
-                      </Text>
-                    </Box>
-
-                    <Box>
-                      <Text fontWeight="bold" fontSize="lg" mb={2}>
-                        B.Tech in Chemistry
-                      </Text>
-                      <Text className={styles.textMuted}>Federal University of Technology, Minna | 2013 - 2018</Text>
-                    </Box>
-                  </VStack>
-                </Box>
-              </VStack>
+              </Box>
             </motion.div>
           </Box>
         </Box>
@@ -223,4 +220,3 @@ export default function About() {
     </Box>
   );
 }
-
